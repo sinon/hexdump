@@ -1,9 +1,9 @@
-use std::{env, fs::File, io::Read};
+use std::{env, fs::File, io::Read, path::PathBuf};
 
 const BYTES_PER_LINE: usize = 16;
 
 fn main() {
-    let file_name_arg = env::args().nth(1).expect("File name needed");
+    let file_name_arg = PathBuf::from(env::args().nth(1).expect("File name needed"));
     let mut file = File::open(&file_name_arg).expect("Unable to open file");
     let mut pos = 0;
     let mut buffer = [0; BYTES_PER_LINE];
